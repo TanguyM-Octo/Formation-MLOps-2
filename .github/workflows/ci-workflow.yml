@@ -25,7 +25,7 @@ jobs:
           pip install vulture
           pip install pytest
       - name: Run Linter
-        run:  flake8
+        run:  flake8 formation_indus_ds_avancee
       - name: Run Vulture
         run:  vulture
       - name: Run tests
