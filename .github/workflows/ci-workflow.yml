@@ -27,7 +27,7 @@ jobs:
       - name: Run Linter
         run:  flake8 formation_indus_ds_avancee
       - name: Run Vulture
-        run:  vulture --min-confidence 80 /
+        run:  vulture --min-confidence 80 formation_indus_ds_avancee
       - name: Run tests
         run:  pytest tests
 
