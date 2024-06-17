@@ -29,5 +29,5 @@ jobs:
           python -m behave tests/test_functional/features
       - name: Quality
         run: |
-          python -m pytest --cov=formation_indus_ds_avancee/ tests/test_unit/ -vv -p no:warnings --min-coverage 0
+          python -m pytest --cov=formation_indus_ds_avancee/ tests/test_unit/ -vv -p no:warnings --fail-under=30
           sh ./tests/tests_pyramid.sh
