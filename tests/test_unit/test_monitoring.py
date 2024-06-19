@@ -9,7 +9,7 @@ from dags.config import MONITORING_TABLE_NAME
 from formation_indus_ds_avancee.monitoring import monitor_with_io
 
 
-@mark.skip("Complete monitor function and test, then remove the mark.skip")
+#@mark.skip("Complete monitor function and test, then remove the mark.skip")
 @patch('pandas.read_csv')
 def test_monitor_with_io_should_write_predictions_mean_to_db(mocked_read_csv):
     # Given
@@ -20,7 +20,7 @@ def test_monitor_with_io_should_write_predictions_mean_to_db(mocked_read_csv):
     mocked_read_csv.return_value = predictions
     db_con_str = 'sqlite:///test_db.db'
     # Start filling expected
-    expected = ...
+    expected = pd.DataFrame({'predictions_time': [given_date], 'predictions': [13.0]})
     # End filling expected
 
     # When
@@ -30,6 +30,7 @@ def test_monitor_with_io_should_write_predictions_mean_to_db(mocked_read_csv):
     actual = pd.read_sql(f'SELECT * FROM {MONITORING_TABLE_NAME}', db_conn, parse_dates=['predictions_time'])
 
     # Then
+    print(actual)
     pd.testing.assert_frame_equal(expected, actual)
     db_conn.close()
     os.remove('test_db.db')
@@ -37,4 +38,4 @@ def test_monitor_with_io_should_write_predictions_mean_to_db(mocked_read_csv):
 
 def test_monitoring_table_name_as_been_changed():
     # Please change monitoring table name so that you don't overwrite monitoring from other attendees
-    assert MONITORING_TABLE_NAME != "monitoring"
+    assert MONITORING_TABLE_NAME != "tanguy__monitoring__test"
